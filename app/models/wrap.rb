@@ -42,11 +42,7 @@ class Wrap
     docid = options[:docid] || "0Bzvpzqrx7zGoZVJtcHZNdHM1SVE"
     headers = options[:headers] || {}
     data = { status: false, data: ""}
-    # request.remote_ip
-    # headers = {
-    #   "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
-    #   "Remote-Addr": request.remote_ip
-    # }
+
     if docid.present?
       begin
         google_drive_video_url = "#{CHECK_DRIVE_URL_1}?docid=#{docid}"
