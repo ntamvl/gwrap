@@ -13,9 +13,9 @@ class HomeController < ApplicationController
     puts request.remote_ip
     puts request.user_agent
     puts "--------------"
-    # "remote-addr": request.remote_ip,
     headers = {
-      "user-agent": request.user_agent
+      "user-agent": request.user_agent,
+      "remote-addr": request.remote_ip
     }
     docid = params[:docid]
     data = { docid: docid }
