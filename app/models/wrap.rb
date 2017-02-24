@@ -46,7 +46,7 @@ class Wrap
     if docid.present?
       begin
         google_drive_video_url = "#{CHECK_DRIVE_URL_2}?docid=#{docid}"
-        drive_content_obj = HTTParty.get(google_drive_video_url, headers: headers, timeout: 180)
+        drive_content_obj = HTTParty.get(google_drive_video_url, headers: headers)
         ap drive_content_obj.headers
         drive_content = drive_content_obj.body
         # puts drive_content
@@ -55,6 +55,7 @@ class Wrap
         urls = []
         drive_params[:fmt_stream_map].split(',').each do |link|
           url = URI.parse(CGI.unescape(link.split('|')[1]))
+          origin_video_link = url.to_s
 
           params = CGI.parse(url.query || "")
           params.delete('driveid')
@@ -65,7 +66,7 @@ class Wrap
 
           # call curl -i video_link before send it to users to ensure that users can play videos 99%
 
-          urls << { itag: link.split('|')[0], url: video_link }
+          urls << { itag: link.split('|')[0], url: video_link, origin_url: origin_video_link }
         end
 
         data[:status] = true
