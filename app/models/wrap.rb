@@ -45,8 +45,9 @@ class Wrap
 
     if docid.present?
       begin
-        google_drive_video_url = "#{CHECK_DRIVE_URL_2}?docid=#{docid}"
+        google_drive_video_url = "#{CHECK_DRIVE_URL_1}?docid=#{docid}"
         drive_content_obj = HTTParty.get(google_drive_video_url, headers: headers)
+        # drive_content_obj = HTTParty.get(google_drive_video_url)
         ap drive_content_obj.headers
         drive_content = drive_content_obj.body
         # puts drive_content
